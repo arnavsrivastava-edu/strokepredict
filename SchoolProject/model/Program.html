@@ -157,19 +157,18 @@
                 smoking_status: formData.get('smoking_status')
             };
 
-            // Send the data to Flask API using fetch (AJAX)
-            fetch('http://xxxxxx.ngrok.io/predict', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)  // Convert the data to JSON
-            })
-            .then(response => response.json())  // Parse the JSON response
-            .then(data => {
-                document.getElementById('result-container').innerHTML = 'Prediction: ' + data.prediction;
-                document.getElementById('result-container').style.display = 'block'; // Show the result
-            })
+          fetch('https://1a54-2405-201-600b-8828-9deb-f799-b287-ac98.ngrok-free.app/predict', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => {
+    document.getElementById('result-container').innerHTML = 'Prediction: ' + data.prediction*100 + '%';
+    document.getElementById('result-container').style.display = 'block';
+})
             .catch(error => console.error('Error:', error));
         });
     </script>
